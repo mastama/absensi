@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('role')->default('user'); // Menambahkan kolom role
+            $table->enum('role', ['user', 'admin'])->default('user'); // Menambahkan kolom role
         });
     }
 
