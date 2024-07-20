@@ -9,7 +9,7 @@ export default function Pagination({ links }) {
                     href={link.url}
                     className=
                         {`px-4 py-2 border rounded
-                        ${link.active ? 'bg-indigo-500 text-white' : 'bg-white text-blue-500 hover:bg-blue-100'
+                        ${link.active ? 'bg-blue-500 text-white' : 'bg-white text-blue-500 hover:bg-blue-100'
                         }`
                 }
                     dangerouslySetInnerHTML={{ __html: link.label }}
