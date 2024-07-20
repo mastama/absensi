@@ -11,7 +11,8 @@ class UserController extends Controller
     //
     public function index(): \Inertia\Response
     {
-        $users = User::all();
+//        $users = User::all(); // menampilkan semua data
+        $users = User::paginate(10);
 
         return Inertia::render('User/Index', [
             'users' => $users,

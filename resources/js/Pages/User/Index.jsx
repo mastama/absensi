@@ -1,5 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import Pagination from "@/Components/Pagination.jsx";
 
 export default function UserIndex({ auth, users }) {
     return (
@@ -23,7 +24,7 @@ export default function UserIndex({ auth, users }) {
                                 </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200">
-                                {users.map((user) => (
+                                {users.data.map((user) => (
                                     <tr key={user.id}>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.id}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.name}</td>
@@ -33,6 +34,7 @@ export default function UserIndex({ auth, users }) {
                                 ))}
                                 </tbody>
                             </table>
+                            <Pagination links={users.links} />
                         </div>
                     </div>
                 </div>
