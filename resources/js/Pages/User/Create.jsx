@@ -6,6 +6,8 @@ import TextInput from "@/Components/TextInput.jsx";
 import InputError from "@/Components/InputError.jsx";
 import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import {Transition} from "@headlessui/react";
+import Selectbox from "@/Components/Selectbox.jsx";
+import {useState} from "react";
 
 export default function UserCreate({ auth }) {
 
@@ -14,8 +16,15 @@ export default function UserCreate({ auth }) {
         name: "",
         email: "",
         password: "",
-        password_confirmation :""
+        password_confirmation :"",
+        role: "user"
     });
+
+    const [role, setRole] = useState('user');
+    const handleRoleChange = (e) => {
+        setRole(e.target.value);
+        setData('role', e.target.value);
+    };
 
     const submit = (e) => {
         e.preventDefault();
@@ -82,6 +91,27 @@ export default function UserCreate({ auth }) {
                                         />
 
                                         <InputError className="mt-2" message={errors.email}/>
+                                    </div>
+
+                                    <div>
+                                        <InputLabel htmlFor="role" value="Role"/>
+
+                                        <Selectbox
+                                            value={role}
+                                            onChange={handleRoleChange}
+                                            options={[
+                                                {
+                                                    value: "admin",
+                                                    label: "Admin"
+                                                },
+                                                {
+                                                    value: "user",
+                                                    label: "User"
+                                                }
+                                            ]}
+                                        />
+
+                                        <InputError className="mt-2" message={errors.role}/>
                                     </div>
 
                                     <div>
