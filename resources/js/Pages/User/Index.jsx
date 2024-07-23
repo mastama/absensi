@@ -1,9 +1,16 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import {Head, Link} from '@inertiajs/react';
+import {Head, Link, router} from '@inertiajs/react';
 import Pagination from "@/Components/Pagination.jsx";
 
 export default function UserIndex({ auth, users }) {
-    console.log(users);
+    // console.log(users);
+
+    const handleDelete = (id) => {
+        if (confirm("Are you sure you want to delete this user?")) {
+            router.delete(route('users.destroy', id));
+        }
+    };
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -51,6 +58,20 @@ export default function UserIndex({ auth, users }) {
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.name}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.role}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <Link
+                                                href={route('users.edit', user.id)}
+                                                className="inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mr-2"
+                                            >
+                                                Edit
+                                            </Link>
+                                            <button
+                                                onClick={() => handleDelete(user.id)}
+                                                className="inline-flex items-center px-4 py-2 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 focus:bg-red-700 active:bg-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                                            >
+                                                Delete
+                                            </button>
+                                        </td>
                                     </tr>
                                 ))}
                                 </tbody>

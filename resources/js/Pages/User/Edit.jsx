@@ -9,18 +9,18 @@ import {Transition} from "@headlessui/react";
 import Selectbox from "@/Components/Selectbox.jsx";
 import {useState} from "react";
 
-export default function UserCreate({ auth }) {
+export default function UserEdit({ user, auth }) {
 
     // menggunakan hook userForm dari inertia
-    const { data, setData, post, errors, processing, recentlySuccessful } = useForm({
-        name: "",
-        email: "",
+    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
+        name: user.name,
+        email: user.email,
         password: "",
         password_confirmation :"",
-        role: "user"
+        role: user.role
     });
 
-    const [role, setRole] = useState('user');
+    const [role, setRole] = useState(user.role);
     const handleRoleChange = (e) => {
         setRole(e.target.value);
         setData('role', e.target.value);
@@ -29,10 +29,10 @@ export default function UserCreate({ auth }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('users.store'), {
+        patch(route('users.update', user.id), {
             preserveScroll: true,
             onSuccess: () => {
-                alert("Success created user");
+                alert("Success updated user");
             },
             onError: (errors) => {
                 console.log(errors);
