@@ -53,10 +53,10 @@ export default function UserEdit({ user, auth }) {
                         <div className="p-6 text-gray-900">
                             <section className="max-w-xl">
                                 <header>
-                                    <h2 className="text-lg font-medium text-gray-900">Create Users</h2>
+                                    <h2 className="text-lg font-medium text-gray-900">Edit Users</h2>
 
                                     <p className="mt-1 text-sm text-gray-600">
-                                        Create your new account's user.
+                                         Edit user details
                                     </p>
                                 </header>
 
