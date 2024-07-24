@@ -8,6 +8,7 @@ import PrimaryButton from "@/Components/PrimaryButton.jsx";
 import {Transition} from "@headlessui/react";
 import Selectbox from "@/Components/Selectbox.jsx";
 import {useState} from "react";
+import dataRoles from "@/data/roles.json"
 
 export default function UserEdit({ user, auth }) {
 
@@ -99,16 +100,7 @@ export default function UserEdit({ user, auth }) {
                                         <Selectbox
                                             value={role}
                                             onChange={handleRoleChange}
-                                            options={[
-                                                {
-                                                    value: "admin",
-                                                    label: "Admin"
-                                                },
-                                                {
-                                                    value: "user",
-                                                    label: "User"
-                                                }
-                                            ]}
+                                            options={dataRoles}
                                         />
 
                                         <InputError className="mt-2" message={errors.role}/>
